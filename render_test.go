@@ -12,7 +12,7 @@ import (
 	"math"
 	"testing"
 
-	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // pixNear asserts the pixel at (x,y) is approximately (r,g,b) on 0..255 scale.

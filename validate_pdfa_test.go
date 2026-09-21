@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 func hasRule(rep *pdf.PDFAValidationReport, rule string) bool {

@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // newRecipientKey generates a throwaway RSA key plus a self-signed

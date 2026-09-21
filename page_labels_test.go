@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // TestPageLabelDefaultDecimal verifies that pages without /PageLabels return

@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // TestChangePassword re-encrypts an encrypted document with a new password,

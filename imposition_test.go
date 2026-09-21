@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // buildContentPages makes an n-page document where each page carries a line of

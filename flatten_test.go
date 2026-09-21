@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 func pageText(t *testing.T, doc *asposepdf.Document, page int) string {

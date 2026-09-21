@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // builtForm holds a fresh document with one field of each type, for JSON

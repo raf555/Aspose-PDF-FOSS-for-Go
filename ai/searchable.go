@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // MakeSearchable OCRs the document's scanned pages and writes the recognized

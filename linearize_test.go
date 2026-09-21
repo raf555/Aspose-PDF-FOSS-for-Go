@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 func buildLinDoc(t *testing.T, pages int) *pdf.Document {

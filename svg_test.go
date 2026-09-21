@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 func TestPage_AddSVG_FromPath(t *testing.T) {

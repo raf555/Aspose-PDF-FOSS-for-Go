@@ -6,7 +6,7 @@ import (
 	"image"
 	"testing"
 
-	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // hasNonWhite reports whether any pixel in the rect [x0,x1)×[y0,y1) is not white.

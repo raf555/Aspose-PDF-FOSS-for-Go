@@ -7,7 +7,7 @@ import (
 	"image"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // colorfulness returns the mean per-pixel chroma (max−min of RGB channels) of an

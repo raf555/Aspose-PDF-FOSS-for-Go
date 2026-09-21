@@ -7,7 +7,7 @@ import (
 	"errors"
 	"strings"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // defaultChatContextRunes is the default budget for the document text stuffed

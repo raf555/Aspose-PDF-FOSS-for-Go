@@ -50,7 +50,7 @@ import (
 	"strings"
 	"time"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 const (
@@ -2046,7 +2046,7 @@ func addCoverPage(doc *pdf.Document, page *pdf.Page) {
 	leftLink := pdf.NewLinkAnnotation(page, pdf.Rectangle{
 		LLX: ghStart - 2, LLY: linkY - 3, URX: srcEnd + 2, URY: linkY + iconH + 3,
 	})
-	leftLink.SetAction(pdf.NewGoToURIAction("https://github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"))
+	leftLink.SetAction(pdf.NewGoToURIAction("https://github.com/raf555/aspose-pdf-foss-for-go"))
 	leftLink.SetBorderWidth(0)
 	mustAnnot(annots.Add(leftLink))
 
@@ -2072,7 +2072,7 @@ func addCoverPage(doc *pdf.Document, page *pdf.Page) {
 	rightLink := pdf.NewLinkAnnotation(page, pdf.Rectangle{
 		LLX: goStart - 2, LLY: linkY - 3, URX: apiEnd + 2, URY: linkY + iconH + 3,
 	})
-	rightLink.SetAction(pdf.NewGoToURIAction("https://pkg.go.dev/github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"))
+	rightLink.SetAction(pdf.NewGoToURIAction("https://pkg.go.dev/github.com/raf555/aspose-pdf-foss-for-go"))
 	rightLink.SetBorderWidth(0)
 	mustAnnot(annots.Add(rightLink))
 }

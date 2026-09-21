@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 func epubParts(t *testing.T, data []byte) (map[string][]byte, []*zip.File) {

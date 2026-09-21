@@ -26,8 +26,8 @@ import (
 	"strings"
 	"time"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
-	"github.com/aspose-pdf-foss/aspose-pdf-foss-for-go/ai"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	"github.com/raf555/aspose-pdf-foss-for-go/ai"
 )
 
 func main() {

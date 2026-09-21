@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
+	pdf "github.com/raf555/aspose-pdf-foss-for-go"
 )
 
 // newSelfSigned generates a throwaway self-signed certificate for the given
