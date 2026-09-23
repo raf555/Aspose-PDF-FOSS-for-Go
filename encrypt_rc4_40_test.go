@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // encryptRC4_40 writes a one-page document under the original 40-bit handler.

@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // The tests in this file decode the primary hint stream of a linearized

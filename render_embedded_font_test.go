@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"testing"
 
-	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
+	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // TestRenderSubsettedEmbeddedFont guards against the regression where a

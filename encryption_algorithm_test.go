@@ -5,7 +5,7 @@ package asposepdf_test
 import (
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 func TestEncryptionAlgorithmConstants(t *testing.T) {

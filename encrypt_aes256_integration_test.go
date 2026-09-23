@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // TestSetEncryptionAES256_WithFileAttachment verifies that AES-256

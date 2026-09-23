@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // renderPage1 renders page 1 to PNG bytes at a fixed DPI for comparison.

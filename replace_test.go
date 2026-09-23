@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // makeTextDoc builds a one-page document with a single line of text.

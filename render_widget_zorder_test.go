@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // TestRenderWidgetDrawnOverLaterSquare is the regression guard for pdf-go-7i9 /

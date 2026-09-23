@@ -5,7 +5,7 @@ package asposepdf_test
 import (
 	"testing"
 
-	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
+	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // TestRenderConstantAlphaFill checks the gs operator's /ca (constant fill

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // chunkRunes is the map-reduce chunk budget: pages are concatenated into

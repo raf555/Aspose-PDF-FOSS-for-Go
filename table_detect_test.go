@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // The library's own AddTable renderer is a free oracle: generate a ruled

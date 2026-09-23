@@ -20,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // passwordsToTry are attempted, in order, against encrypted files. The

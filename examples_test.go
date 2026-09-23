@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // Open a PDF file and inspect its page count.
@@ -309,7 +309,7 @@ func ExampleNewLinkAnnotation() {
 	page, _ := doc.Page(1)
 
 	link := pdf.NewLinkAnnotation(page, pdf.Rectangle{LLX: 50, LLY: 700, URX: 300, URY: 720})
-	link.SetAction(pdf.NewGoToURIAction("https://pkg.go.dev/github.com/raf555/aspose-pdf-foss-for-go"))
+	link.SetAction(pdf.NewGoToURIAction("https://pkg.go.dev/github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"))
 	if err := page.Annotations().Add(link); err != nil {
 		log.Fatal(err)
 	}

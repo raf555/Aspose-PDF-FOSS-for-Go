@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	asposepdf "github.com/raf555/aspose-pdf-foss-for-go"
+	asposepdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 func TestDocumentOpen(t *testing.T) {

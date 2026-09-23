@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"testing"
 
-	pdf "github.com/raf555/aspose-pdf-foss-for-go"
+	pdf "github.com/aspose-pdf-foss/aspose-pdf-foss-for-go"
 )
 
 // TestButtonSetAppearance verifies a push button's rich appearance:
