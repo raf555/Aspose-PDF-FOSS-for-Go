@@ -19,7 +19,11 @@ const nsPDFAID = "http://www.aiim.org/pdfa/ns/id/"
 //
 //   - removes encryption;
 //   - removes JavaScript and Launch actions (document-level and per-annotation);
-//   - removes file attachments for PDF/A-1;
+//   - removes file attachments for PDF/A-1 (including a page-pinned
+//     FileAttachmentAnnotation, not just the document-level EmbeddedFiles tree);
+//   - rasterizes any page using transparency for PDF/A-1 (FlattenTransparency,
+//     which PDF/A-1 forbids outright; PDF/A-2 and -3 permit it and are left
+//     alone);
 //   - sets annotation flags (Print on, Hidden/NoView off);
 //   - embeds non-embedded simple fonts (Standard-14 and other single-byte
 //     Type1/TrueType) using the bundled metric-compatible substitutes;
@@ -27,13 +31,20 @@ const nsPDFAID = "http://www.aiim.org/pdfa/ns/id/"
 //   - writes an XMP packet carrying the pdfaid identifier (synced from /Info).
 //
 // Symbol and ZapfDingbats have no Latin substitute and remain a reported
-// violation; composite (Type0/CJK) and Type3 fonts, and PDF/A-1 transparency,
-// are not auto-fixed. The returned report lists any remaining issues; when
+// violation; composite (Type0/CJK) and Type3 fonts are not auto-fixed. The
+// returned report lists any remaining issues; when
 // Conformant is true the document satisfies the checks in ValidatePDFA. Mirrors
 // the intent of Aspose.PDF for .NET's Document.Convert(PdfFormat).
 //
 // The changes are applied to the in-memory document; call Save/WriteTo to write
-// the converted file.
+// the converted file. An error return (from the transparency-flattening step,
+// the only one that can fail) can leave the document partway converted —
+// pages already rasterized before the failing one keep their new raster
+// content, like ApplyRedactions' documented best-effort/partial-state-on-error
+// behavior; re-running FlattenTransparency or ConvertToPDFA is safe (already
+// vector-content pages that raise no error stay untouched, and an already
+// rasterized page is a no-op the second time, per FlattenTransparency's own
+// idempotence guarantee).
 func (d *Document) ConvertToPDFA(format PDFAFormat) (*PDFAValidationReport, error) {
 	if len(d.pages) == 0 {
 		return nil, fmt.Errorf("ConvertToPDFA: document has no pages")
@@ -51,6 +62,12 @@ func (d *Document) ConvertToPDFA(format PDFAFormat) (*PDFAValidationReport, erro
 	d.stripPDFAActions()
 	if format.part() == 1 {
 		d.removePDFAEmbeddedFiles()
+		// PDF/A-1 forbids transparency outright (ISO 19005-1); flatten it away
+		// before the font pass below, so a rasterized page's now-unused fonts
+		// are not embedded for nothing.
+		if _, err := d.FlattenTransparency(); err != nil {
+			return nil, fmt.Errorf("ConvertToPDFA: flatten transparency: %w", err)
+		}
 	}
 	if format.part() == 3 {
 		d.associatePDFAEmbeddedFiles()
@@ -228,22 +245,28 @@ func (d *Document) stripPDFAActions() {
 	}
 }
 
-// removePDFAEmbeddedFiles drops the /Names/EmbeddedFiles name tree and the
-// catalog /AF array (PDF/A-1 prohibits file attachments). Both are needed:
-// /AF keeps its file specifications — and through them the embedded file
-// streams — reachable, so dropping only the name tree would leave the
-// attachment in the saved file, merely harder to find.
+// removePDFAEmbeddedFiles drops the /Names/EmbeddedFiles name tree, the
+// catalog /AF array, and every page-pinned FileAttachmentAnnotation's /FS
+// (PDF/A-1 prohibits file attachments outright, wherever they're reachable
+// from — pdf-go-tdx5: a filespec reached only through a page annotation used
+// to survive this, undetected by pdfaCheckEmbeddedFiles too). All three are
+// needed: /AF keeps its file specifications — and through them the embedded
+// file streams — reachable, so dropping only the name tree would leave the
+// attachment in the saved file, merely harder to find; same for a page
+// annotation's /FS.
 func (d *Document) removePDFAEmbeddedFiles() {
 	if names, ok := resolveRefToDict(d.objects, d.catalog["/Names"]); ok {
 		delete(names, "/EmbeddedFiles")
 	}
 	delete(d.catalog, "/AF")
+	for _, fa := range d.pdfaFileAttachmentAnnotations() {
+		delete(fa.dict, "/FS")
+	}
 
 	// Detaching the entries leaves the file specifications and their embedded
 	// file streams in the object set, so the writer would still put the
 	// attachment's bytes in the saved file. Drop the ones nothing references
-	// any more — a filespec still reached from a page (a file-attachment
-	// annotation) keeps its stream.
+	// any more.
 	reachable := collectReachableIDs(d.objects, d.pages)
 	for key, v := range d.catalog {
 		if catalogKeyRebuiltByWriter(d, key) {
@@ -272,7 +295,8 @@ func (d *Document) removePDFAEmbeddedFiles() {
 // associatePDFAEmbeddedFiles gives every attachment the association PDF/A-3
 // requires: an existing /AFRelationship is kept, a missing one becomes
 // Unspecified, and each file is listed in the catalog /AF with a /ModDate in
-// its parameters.
+// its parameters. Covers both the document-level EmbeddedFiles name tree and
+// every page-pinned FileAttachmentAnnotation (pdf-go-tdx5).
 func (d *Document) associatePDFAEmbeddedFiles() {
 	for _, f := range d.EmbeddedFiles().All() {
 		f.SetAFRelationship(f.AFRelationship())
@@ -281,6 +305,19 @@ func (d *Document) associatePDFAEmbeddedFiles() {
 			if params == nil {
 				params = pdfDict{}
 				st.Dict["/Params"] = params
+			}
+			if _, ok := params["/ModDate"]; !ok {
+				params["/ModDate"] = pdfDateString(time.Now())
+			}
+		}
+	}
+	for _, fa := range d.pdfaFileAttachmentAnnotations() {
+		fa.SetAFRelationship(fa.AFRelationship())
+		if stream := fa.resolveEmbeddedFile(); stream != nil {
+			params, _ := stream.Dict["/Params"].(pdfDict)
+			if params == nil {
+				params = pdfDict{}
+				stream.Dict["/Params"] = params
 			}
 			if _, ok := params["/ModDate"]; !ok {
 				params["/ModDate"] = pdfDateString(time.Now())
